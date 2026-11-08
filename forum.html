@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Форум СБО</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f1117;
+    color: #e8e8e8;
+}
+
+button, input, textarea {
+    font-family: inherit;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* HEADER */
+
+header {
+    background: #171a23;
+    border-bottom: 1px solid #292d38;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.logo span {
+    color: #8f96a3;
+    font-size: 13px;
+}
+
+.discord {
+    background: #5865f2;
+    color: white;
+    padding: 11px 17px;
+    border-radius: 7px;
+    font-weight: bold;
+}
+
+/* CONTAINER */
+
+.container {
+    width: min(1150px, 94%);
+    margin: 30px auto;
+}
+
+/* TOP */
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.top h2 {
+    margin: 0;
+}
+
+.search {
+    display: flex;
+    gap: 8px;
+}
+
+.search input {
+    width: 250px;
+    padding: 11px;
+    border-radius: 6px;
+    border: 1px solid #303541;
+    background: #171a23;
+    color: white;
+    outline: none;
+}
+
+/* BUTTONS */
+
+.btn {
+    border: 0;
+    background: #242936;
+    color: white;
+    padding: 11px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #303746;
+}
+
+.btn-main {
+    background: #c99b3b;
+    color: #111;
+    font-weight: bold;
+}
+
+.btn-main:hover {
+    background: #e0b04d;
+}
+
+/* BREADCRUMBS */
+
+.breadcrumbs {
+    color: #8f96a3;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+.breadcrumbs span {
+    color: #d6d8dc;
+    cursor: pointer;
+}
+
+.breadcrumbs span:hover {
+    color: #c99b3b;
+}
+
+/* CATEGORY */
+
+.category {
+    margin-bottom: 25px;
+}
+
+.category-title {
+    background: #1b1e27;
+    border: 1px solid #292d38;
+    padding: 14px 18px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.forum {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: #151820;
+    border: 1px solid #292d38;
+    border-top: 0;
+    padding: 18px;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.forum:hover {
+    background: #1c202a;
+}
+
+.forum-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: #242936;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+.forum-info {
+    flex: 1;
+}
+
+.forum-name {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.forum-desc {
+    color: #8f96a3;
+    font-size: 13px;
+}
+
+.stats {
+    text-align: center;
+    color: #9ca2ae;
+    font-size: 12px;
+}
+
+/* TOPICS */
+
+.topic {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: #151820;
+    border: 1px solid #292d38;
+    border-bottom: 0;
+    padding: 17px;
+    cursor: pointer;
+}
+
+.topic:last-child {
+    border-bottom: 1px solid #292d38;
+}
+
+.topic:hover {
+    background: #1c202a;
+}
+
+.topic-icon {
+    width: 42px;
+    height: 42px;
+    background: #242936;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topic-info {
+    flex: 1;
+}
+
+.topic-title {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.topic-meta {
+    color: #858b97;
+    font-size: 12px;
+}
+
+.topic-count {
+    color: #999fa9;
+    font-size: 13px;
+}
+
+/* POST */
+
+.post {
+    display: grid;
+    grid-template-columns: 190px 1fr;
+    background: #151820;
+    border: 1px solid #292d38;
+    margin-bottom: 12px;
+    min-height: 180px;
+}
+
+.user {
+    padding: 20px;
+    background: #191c24;
+    border-right: 1px solid #292d38;
+    text-align: center;
+}
+
+.avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #242936;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+}
+
+.username {
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.rank {
+    color: #c99b3b;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.post-content {
+    padding: 20px;
+}
+
+.post-date {
+    color: #777d89;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.post-text {
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+/* FORMS */
+
+.form {
+    background: #151820;
+    border: 1px solid #292d38;
+    padding: 22px;
+}
+
+label {
+    display: block;
+    color: #aab0bb;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    background: #101218;
+    border: 1px solid #303541;
+    color: white;
+    border-radius: 6px;
+    outline: none;
+    margin-bottom: 18px;
+}
+
+textarea {
+    min-height: 160px;
+    resize: vertical;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* EMPTY */
+
+.empty {
+    background: #151820;
+    border: 1px solid #292d38;
+    padding: 40px;
+    text-align: center;
+    color: #8f96a3;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #6f7580;
+    font-size: 12px;
+    padding: 35px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px) {
+    header {
+        padding: 15px;
+    }
+
+    .container {
+        width: 96%;
+    }
+
+    .top {
+        align-items: flex-start;
+        gap: 15px;
+        flex-direction: column;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .search input {
+        width: 100%;
+    }
+
+    .post {
+        grid-template-columns: 1fr;
+    }
+
+    .user {
+        border-right: 0;
+        border-bottom: 1px solid #292d38;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .avatar {
+        margin: 0;
+    }
+
+    .username {
+        margin-top: 0;
+    }
+
+    .rank {
+        margin-top: 3px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <img src= "noviy-gerb.png" alt="Герб СБО">
+        <div>
+            <h1>СБО</h1>
+            <span>Официальный форум организации</span>
+        </div>
+    </div>
+
+    <a class="discord"
+       href="https://discord.gg/CEj2EBb3k"
+       target="_blank">
+        Discord
+    </a>
+</header>
+
+<div class="container">
+
+    <div id="app"></div>
+
+</div>
+
+<footer>
+    СБО © 2026
+</footer>
+
+<script>
+
+/* =========================================================
+   ДАННЫЕ
+========================================================= */
+
+let data = JSON.parse(localStorage.getItem("sbto_forum")) || {
+    sections: [
+        {
+            id: 1,
+            name: "Информация",
+            icon: "📢",
+            forums: [
+                {
+                    id: 101,
+                    name: "Новости СБО",
+                    description: "Официальные новости, объявления и важная информация.",
+                    topics: []
+                },
+                {
+                    id: 102,
+                    name: "Правила организации",
+                    description: "Правила, положения и основные требования.",
+                    topics: []
+                }
+            ]
+        },
+
+        {
+            id: 2,
+            name: "Общение",
+            icon: "💬",
+            forums: [
+                {
+                    id: 201,
+                    name: "Общий раздел",
+                    description: "Общение участников СБО.",
+                    topics: []
+                },
+                {
+                    id: 202,
+                    name: "Предложения",
+                    description: "Ваши идеи и предложения по развитию организации.",
+                    topics: []
+                }
+            ]
+        },
+
+        {
+            id: 3,
+            name: "Обращения",
+            icon: "📋",
+            forums: [
+                {
+                    id: 301,
+                    name: "Заявления",
+                    description: "Подача заявлений и обращений.",
+                    topics: []
+                },
+                {
+                    id: 302,
+                    name: "Жалобы",
+                    description: "Официальные жалобы и их рассмотрение.",
+                    topics: []
+                }
+            ]
+        },
+
+        {
+            id: 4,
+            name: "Технический раздел",
+            icon: "🛠️",
+            forums: [
+                {
+                    id: 401,
+                    name: "Техническая поддержка",
+                    description: "Помощь с техническими вопросами.",
+                    topics: []
+                }
+            ]
+        }
+    ]
+};
+
+function saveData() {
+    localStorage.setItem("sbto_forum", JSON.stringify(data));
+}
+
+function esc(text) {
+    return String(text)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
+
+function getForum(id) {
+    for (const section of data.sections) {
+        const forum = section.forums.find(f => f.id == id);
+        if (forum) return forum;
+    }
+}
+
+function getSection(id) {
+    return data.sections.find(s => s.id == id);
+}
+
+/* =========================================================
+   ГЛАВНАЯ
+========================================================= */
+
+function home() {
+
+    document.getElementById("app").innerHTML = `
+
+        <div class="top">
+
+            <div>
+                <h2>Форум СБО</h2>
+            </div>
+
+            <div class="search">
+                <input
+                    id="search"
+                    type="text"
+                    placeholder="Поиск по форуму..."
+                    onkeydown="if(event.key==='Enter') searchTopics()">
+
+                <button class="btn" onclick="searchTopics()">
+                    🔎
+                </button>
+            </div>
+
+        </div>
+
+        ${data.sections.map(section => `
+
+            <div class="category">
+
+                <div class="category-title">
+                    ${section.icon} ${esc(section.name)}
+                </div>
+
+                ${section.forums.map(forum => `
+
+                    <div class="forum"
+                         onclick="openForum(${forum.id})">
+
+                        <div class="forum-icon">
+                            ${section.icon}
+                        </div>
+
+                        <div class="forum-info">
+
+                            <div class="forum-name">
+                                ${esc(forum.name)}
+                            </div>
+
+                            <div class="forum-desc">
+                                ${esc(forum.description)}
+                            </div>
+
+                        </div>
+
+                        <div class="stats">
+                            ${forum.topics.length}<br>
+                            тем
+                        </div>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+        `).join("")}
+
+    `;
+}
+
+/* =========================================================
+   ФОРУМ
+========================================================= */
+
+function openForum(id) {
+
+    const forum = getForum(id);
+
+    if (!forum) return;
+
+    document.getElementById("app").innerHTML = `
+
+        <div class="breadcrumbs">
+            <span onclick="home()">Форум</span>
+            /
+            <span>${esc(forum.name)}</span>
+        </div>
+
+        <div class="top">
+
+            <div>
+                <h2>${esc(forum.name)}</h2>
+            </div>
+
+            <button class="btn btn-main"
+                    onclick="newTopic(${forum.id})">
+                ＋ Создать тему
+            </button>
+
+        </div>
+
+        ${
+            forum.topics.length === 0
+
+            ?
+
+            `
+            <div class="empty">
+                В этом разделе пока нет тем.
+                <br><br>
+
+                <button class="btn btn-main"
+                        onclick="newTopic(${forum.id})">
+                    Создать первую тему
+                </button>
+            </div>
+            `
+
+            :
+
+            forum.topics.map(topic => `
+
+                <div class="topic"
+                     onclick="openTopic(${forum.id}, ${topic.id})">
+
+                    <div class="topic-icon">
+                        ${topic.pinned ? "📌" : "💬"}
+                    </div>
+
+                    <div class="topic-info">
+
+                        <div class="topic-title">
+                            ${esc(topic.title)}
+                        </div>
+
+                        <div class="topic-meta">
+                            Автор: ${esc(topic.author)}
+                            · ${topic.posts.length} сообщений
+                        </div>
+
+                    </div>
+
+                    <div class="topic-count">
+                        ${topic.posts.length}
+                    </div>
+
+                </div>
+
+            `).join("")
+        }
+
+    `;
+}
+
+/* =========================================================
+   СОЗДАНИЕ ТЕМЫ
+========================================================= */
+
+function newTopic(forumId) {
+
+    document.getElementById("app").innerHTML = `
+
+        <div class="breadcrumbs">
+            <span onclick="home()">Форум</span>
+            /
+            <span onclick="openForum(${forumId})">
+                Назад
+            </span>
+            /
+            Новая тема
+        </div>
+
+        <h2>Создание темы</h2>
+
+        <div class="form">
+
+            <label>Название темы</label>
+
+            <input
+                id="topicTitle"
+                type="text"
+                placeholder="Введите название темы">
+
+            <label>Ваш ник</label>
+
+            <input
+                id="topicAuthor"
+                type="text"
+                placeholder="Введите ник">
+
+            <label>Сообщение</label>
+
+            <textarea
+                id="topicText"
+                placeholder="Введите текст темы"></textarea>
+
+            <div class="actions">
+
+                <button class="btn btn-main"
+                        onclick="createTopic(${forumId})">
+                    Опубликовать
+                </button>
+
+                <button class="btn"
+                        onclick="openForum(${forumId})">
+                    Отмена
+                </button>
+
+            </div>
+
+        </div>
+
+    `;
+}
+
+function createTopic(forumId) {
+
+    const title = document.getElementById("topicTitle").value.trim();
+    const author = document.getElementById("topicAuthor").value.trim();
+    const text = document.getElementById("topicText").value.trim();
+
+    if (!title || !author || !text) {
+        alert("Заполните все поля.");
+        return;
+    }
+
+    const forum = getForum(forumId);
+
+    const topic = {
+        id: Date.now(),
+        title: title,
+        author: author,
+        pinned: false,
+        posts: [
+            {
+                id: Date.now(),
+                author: author,
+                text: text,
+                date: new Date().toLocaleString("ru-RU")
+            }
+        ]
+    };
+
+    forum.topics.unshift(topic);
+
+    saveData();
+
+    openTopic(forumId, topic.id);
+}
+
+/* =========================================================
+   ТЕМА
+========================================================= */
+
+function openTopic(forumId, topicId) {
+
+    const forum = getForum(forumId);
+
+    const topic = forum.topics.find(t => t.id == topicId);
+
+    if (!topic) return;
+
+    document.getElementById("app").innerHTML = `
+
+        <div class="breadcrumbs">
+
+            <span onclick="home()">
+                Форум
+            </span>
+
+            /
+
+            <span onclick="openForum(${forumId})">
+                ${esc(forum.name)}
+            </span>
+
+            /
+
+            ${esc(topic.title)}
+
+        </div>
+
+        <div class="top">
+
+            <h2>
+                ${topic.pinned ? "📌 " : ""}
+                ${esc(topic.title)}
+            </h2>
+
+            <button class="btn"
+                    onclick="openForum(${forumId})">
+                ← Назад
+            </button>
+
+        </div>
+
+        ${topic.posts.map(post => `
+
+            <div class="post">
+
+                <div class="user">
+
+                    <div class="avatar">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <div class="username">
+                            ${esc(post.author)}
+                        </div>
+
+                        <div class="rank">
+                            Участник
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="post-content">
+
+                    <div class="post-date">
+                        ${esc(post.date)}
+                    </div>
+
+                    <div class="post-text">
+                        ${esc(post.text)}
+                    </div>
+
+                </div>
+
+            </div>
+
+        `).join("")}
+
+        <div class="form">
+
+            <h3>Ответить</h3>
+
+            <label>Ваш ник</label>
+
+            <input
+                id="replyAuthor"
+                type="text"
+                placeholder="Введите ник">
+
+            <label>Сообщение</label>
+
+            <textarea
+                id="replyText"
+                placeholder="Введите ответ"></textarea>
+
+            <button class="btn btn-main"
+                    onclick="replyTopic(${forumId}, ${topicId})">
+                Ответить
+            </button>
+
+        </div>
+
+    `;
+}
+
+/* =========================================================
+   ОТВЕТ
+========================================================= */
+
+function replyTopic(forumId, topicId) {
+
+    const author = document
+        .getElementById("replyAuthor")
+        .value
+        .trim();
+
+    const text = document
+        .getElementById("replyText")
+        .value
+        .trim();
+
+    if (!author || !text) {
+        alert("Заполните ник и сообщение.");
+        return;
+    }
+
+    const forum = getForum(forumId);
+
+    const topic = forum.topics.find(t => t.id == topicId);
+
+    topic.posts.push({
+        id: Date.now(),
+        author: author,
+        text: text,
+        date: new Date().toLocaleString("ru-RU")
+    });
+
+    saveData();
+
+    openTopic(forumId, topicId);
+}
+
+/* =========================================================
+   ПОИСК
+========================================================= */
+
+function searchTopics() {
+
+    const query = document
+        .getElementById("search")
+        .value
+        .trim()
+        .toLowerCase();
+
+    if (!query) {
+        home();
+        return;
+    }
+
+    let results = [];
+
+    data.sections.forEach(section => {
+
+        section.forums.forEach(forum => {
+
+            forum.topics.forEach(topic => {
+
+                if (
+                    topic.title.toLowerCase().includes(query) ||
+                    topic.author.toLowerCase().includes(query)
+                ) {
+                    results.push({
+                        section,
+                        forum,
+                        topic
+                    });
+                }
+
+            });
+
+        });
+
+    });
+
+    document.getElementById("app").innerHTML = `
+
+        <div class="breadcrumbs">
+            <span onclick="home()">Форум</span>
+            /
+            Поиск
+        </div>
+
+        <h2>
+            Результаты поиска
+        </h2>
+
+        ${
+            results.length === 0
+
+            ?
+
+            `<div class="empty">
+                Ничего не найдено.
+            </div>`
+
+            :
+
+            results.map(r => `
+
+                <div class="topic"
+                     onclick="openTopic(${r.forum.id}, ${r.topic.id})">
+
+                    <div class="topic-icon">
+                        ${r.topic.pinned ? "📌" : "💬"}
+                    </div>
+
+                    <div class="topic-info">
+
+                        <div class="topic-title">
+                            ${esc(r.topic.title)}
+                        </div>
+
+                        <div class="topic-meta">
+                            ${esc(r.section.name)}
+                            →
+                            ${esc(r.forum.name)}
+                            ·
+                            ${esc(r.topic.author)}
+                        </div>
+
+                    </div>
+
+                    <div class="topic-count">
+                        ${r.topic.posts.length}
+                    </div>
+
+                </div>
+
+            `).join("")
+        }
+
+    `;
+}
+
+/* =========================================================
+   ЗАПУСК
+========================================================= */
+
+home();
+
+</script>
+
+</body>
+</html>
